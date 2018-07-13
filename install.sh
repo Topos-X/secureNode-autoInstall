@@ -9,7 +9,7 @@ print_status() {
 }
 
 if [ $# -ne 4 ]; then
-    echo "Execution format ./install.sh stakeaddr email fqdn region (eu, na or sea)"
+    echo "Execution format ./install.sh stakeaddr email fqdn region (eu or na)"
     exit
 fi
 
@@ -73,8 +73,8 @@ Restart=always
 ExecStartPre=-/usr/bin/docker stop acme-sh
 ExecStartPre=-/usr/bin/docker rm  acme-sh
 # Always pull the latest docker image
-ExecStartPre=/usr/bin/docker pull neilpang/acme.sh
-ExecStart=/usr/bin/docker run --rm --net=host -v /mnt/zen/certs:/acme.sh --name acme-sh neilpang/acme.sh daemon
+ExecStartPre=/usr/bin/docker pull toposx/acme.sh
+ExecStart=/usr/bin/docker run --rm --net=host -v /mnt/zen/certs:/acme.sh --name acme-sh toposx/acme.sh daemon
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -145,8 +145,8 @@ Restart=always
 ExecStartPre=-/usr/bin/docker stop zen-node
 ExecStartPre=-/usr/bin/docker rm  zen-node
 # Always pull the latest docker image
-ExecStartPre=/usr/bin/docker pull whenlambomoon/zend:latest
-ExecStart=/usr/bin/docker run --rm --net=host -p 9033:9033 -p 18231:18231 -v /mnt/zen:/mnt/zen --name zen-node whenlambomoon/zend:latest
+ExecStartPre=/usr/bin/docker pull toposx/zend:latest
+ExecStart=/usr/bin/docker run --rm --net=host -p 9033:9033 -p 18231:18231 -v /mnt/zen:/mnt/zen --name zen-node toposx/zend:latest
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -164,9 +164,9 @@ Restart=always
 ExecStartPre=-/usr/bin/docker stop zen-secnodetracker
 ExecStartPre=-/usr/bin/docker rm  zen-secnodetracker
 # Always pull the latest docker image
-ExecStartPre=/usr/bin/docker pull whenlambomoon/secnodetracker:latest
-#ExecStart=/usr/bin/docker run --init --rm --net=host -v /mnt/zen:/mnt/zen --name zen-secnodetracker whenlambomoon/secnodetracker:latest
-ExecStart=/usr/bin/docker run --rm --net=host -v /mnt/zen:/mnt/zen --name zen-secnodetracker whenlambomoon/secnodetracker:latest
+ExecStartPre=/usr/bin/docker pull toposx/secnodetracker:latest
+#ExecStart=/usr/bin/docker run --init --rm --net=host -v /mnt/zen:/mnt/zen --name zen-secnodetracker toposx/secnodetracker:latest
+ExecStart=/usr/bin/docker run --rm --net=host -v /mnt/zen:/mnt/zen --name zen-secnodetracker toposx/secnodetracker:latest
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -212,7 +212,7 @@ else
   docker exec -it zen-node /usr/local/bin/gosu user zen-cli z_listaddresses
 fi
 
-print_status "Install Finished"
+print_status "ToposX Node Install Finished"
 echo "Please wait until the blocks are up to date..."
 
 ## TODO: Post the shield address back to our API
