@@ -5,9 +5,9 @@ This repository will help you setup a zencash node with a single bash script.
 The script will install Docker on a fresh Ubuntu VM and provision the following
 containers:
 
-- zend https://hub.docker.com/r/whenlambomoon/zend/
-- Securenodetracker https://hub.docker.com/r/whenlambomoon/secnodetracker/
-- neilpang/acme.sh https://hub.docker.com/r/neilpang/acme.sh
+- zend https://hub.docker.com/r/toposx/zend/
+- Securenodetracker https://hub.docker.com/r/toposx/secnodetracker/
+- neilpang/acme.sh https://hub.docker.com/r/toposx/acme.sh/
 
 acme.sh will run as a docker container and auto-renew your SSL certificates when required.
 
@@ -25,10 +25,10 @@ acme.sh will be used to provision and maintain a valid SSL certificate for your 
 Invoking the script is best done on a fresh installation, however executing install script again should not
 cause any issues.
 
-*Note:* Check the [ansible installer](https://github.com/WhenLamboMoon/docker-zen-node/tree/master/ansible) if you plan on installing multiple nodes
+*Note:* Check the [ansible installer](https://github.com/Topos-X/secureNode-autoInstall/tree/master/ansible) if you plan on installing multiple nodes
 
 ```
-curl -O https://raw.githubusercontent.com/WhenLamboMoon/docker-zen-node/master/install.sh
+curl -O https://raw.githubusercontent.com/Topos-X/secureNode-autoInstall/master/install.sh
 chmod +x install.sh
 ./install.sh <stakeaddr> <email> <fqdn> <region>
 ```
@@ -36,7 +36,7 @@ chmod +x install.sh
 - Stakeaddr is the transparent address which has your 42 ZEN
 - Email is your notification email address should your node have issues
 - FQDN is the hostname which must point to the IP address of your server
-- Region must either be eu, na or sea
+- Region must either be eu or na
 
 Example:
 
@@ -86,7 +86,6 @@ Finally, check the securenode tracker website to see if your node has been regis
 
 - NA: https://securenodes.na.zensystem.io/
 - EU: https://securenodes.eu.zensystem.io/
-- SEA: https://securenodes.sea.zensystem.io/
 
 **Please Note:** It may take a few hours for your server to fully update to the latest block. Your node will not come online until this has been fully updated.
 
@@ -159,7 +158,7 @@ To resolve this you will need to reindex your zen-node. To do this you will need
 
 ```
 systemctl stop zen-node
-docker run --rm --net=host -p 9033:9033 -p 18231:18231 -v /mnt/zen:/mnt/zen --name zen-node whenlambomoon/zend:latest zend -reindex
+docker run --rm --net=host -p 9033:9033 -p 18231:18231 -v /mnt/zen:/mnt/zen --name zen-node toposx/zend:latest zend -reindex
 ```
 
 Once it finishes reindexing you can exit and restart the zen-node normally:
@@ -168,4 +167,3 @@ Once it finishes reindexing you can exit and restart the zen-node normally:
 docker stop zen-node
 systemctl restart zen-node
 ```
-
