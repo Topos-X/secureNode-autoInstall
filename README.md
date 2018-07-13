@@ -7,7 +7,7 @@ containers:
 
 - zend https://hub.docker.com/r/toposx/zend/
 - Securenodetracker https://hub.docker.com/r/toposx/secnodetracker/
-- neilpang/acme.sh https://hub.docker.com/r/toposx/acme.sh/
+- toposx/acme.sh https://hub.docker.com/r/toposx/acme.sh/
 
 acme.sh will run as a docker container and auto-renew your SSL certificates when required.
 
