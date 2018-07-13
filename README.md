@@ -169,10 +169,3 @@ docker stop zen-node
 systemctl restart zen-node
 ```
 
-## Donations
-
-Donations are appreciated:
-
-**ETH** 0xb08c615eb6e0269dc27ece4a581f87d2f5b7188d
-
-**ZEN** znoYaPU2G7MzUA69cMSYzmqMG4rkw3Mx7ae
